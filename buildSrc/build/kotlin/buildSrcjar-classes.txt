@@ -1,1 +1,0 @@
-/Users/mintm1pro/Documents/android/IntegrationOpenApiProject/buildSrc/build/classes/kotlin/main/AppConfig.class:/Users/mintm1pro/Documents/android/IntegrationOpenApiProject/buildSrc/build/classes/kotlin/main/Library.class:/Users/mintm1pro/Documents/android/IntegrationOpenApiProject/buildSrc/build/classes/kotlin/main/Setting.class

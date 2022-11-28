@@ -1,6 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+
+    // dagger hilt
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -32,4 +36,19 @@ android {
 
 dependencies {
     api(project(path = ":Library:DesignSystem"))
+
+    // dagger hilt
+    implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
+    kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
+
+    // ktx
+    api("androidx.activity:activity-ktx:1.6.1")
+    api("androidx.fragment:fragment-ktx:1.5.4")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1") // lifecycleScope
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // viewModelScope
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

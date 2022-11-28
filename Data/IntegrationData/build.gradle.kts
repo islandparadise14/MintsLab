@@ -1,6 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+
+    // dagger hilt
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -34,4 +38,15 @@ dependencies {
     api(project(path = ":Domain:IntegrationDomain"))
 
     implementation("androidx.core:core-ktx:${Library.ANDROID_CORE_KTX}")
+
+    // dagger hilt
+    implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
+    kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
+
+    // TODO api("androidx.room:room-ktx:2.4.3") 룸 적용시 같이 해보자
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
