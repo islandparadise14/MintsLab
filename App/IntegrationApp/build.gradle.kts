@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    // dagger hilt
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -49,4 +53,13 @@ android {
 dependencies {
     api(project(path = ":Data:IntegrationData"))
     api(project(path = ":Presentation:BitcoinFeature"))
+
+    // dagger hilt
+    implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
+    kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

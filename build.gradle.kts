@@ -15,6 +15,10 @@ buildscript {
     }
 }
 
+plugins {
+    id("com.google.dagger.hilt.android") version Setting.DAGGER_HILT_PLUGIN apply false
+}
+
 allprojects {
     repositories {
         google()
