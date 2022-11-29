@@ -19,4 +19,11 @@ object Library {
     const val DAGGER_HILT = "2.44"
 
     const val JAVAX_INJECT = "1"
+
+    const val GSON = "2.10"
+
+    const val RETROFIT = "2.9.0"
+    const val OKHTTP3 = "4.9.2"
+
+    const val ROOM = "2.4.3"
 }
