@@ -28,4 +28,6 @@ object Library {
     const val ROOM = "2.4.3"
 
     const val COROUTINE = "1.6.4"
+
+    const val LANDSCAPIST = "2.1.0"
 }
