@@ -26,4 +26,6 @@ object Library {
     const val OKHTTP3 = "4.9.2"
 
     const val ROOM = "2.4.3"
+
+    const val COROUTINE = "1.6.4"
 }
