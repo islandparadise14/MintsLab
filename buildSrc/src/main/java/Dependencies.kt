@@ -30,4 +30,9 @@ object Library {
     const val COROUTINE = "1.6.4"
 
     const val LANDSCAPIST = "2.1.0"
+
+    const val KOTEST = "5.5.4"
+    const val COROUTINE_TEST = "1.6.4"
+
+    const val KOTLIN_REFLECT = "1.7.22"
 }
