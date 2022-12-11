@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.islandparadise14.bitcoinfeature"
+    namespace = "com.islandparadise14.core"
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
@@ -41,22 +41,17 @@ android {
 }
 
 dependencies {
-    api(project(":Presentation:Core"))
-    api(project(":Domain:BitcoinDomain"))
+    api(project(path = ":Library:DesignSystem"))
 
     // dagger hilt
     implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
 
-    // test 코드 실행시 reflect 필요
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${Library.KOTLIN_REFLECT}")
-
-    // kotest
-    //testImplementation("io.kotest:kotest-runner-junit5-jvm")
-    testImplementation("io.kotest:kotest-runner-junit5:${Library.KOTEST}")
-    testImplementation("io.kotest:kotest-assertions-core:${Library.KOTEST}")
-    // coroutine test
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Library.COROUTINE_TEST}")
+    // ktx
+    api("androidx.activity:activity-ktx:1.6.1")
+    api("androidx.fragment:fragment-ktx:1.5.4")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1") // lifecycleScope
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1") // viewModelScope
 }
 
 // Allow references to generated code
