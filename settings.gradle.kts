@@ -1,8 +1,8 @@
-rootProject.name = "IntegrationOpenApiProject"
+rootProject.name = "MintsLab"
 
-include(":App:IntegrationApp")
-include(":Presentation:Base")
+include(":App:BitcoinApp")
+include(":Presentation:Core")
 include(":Presentation:BitcoinFeature")
-include(":Domain:IntegrationDomain")
-include(":Data:IntegrationData")
+include(":Domain:BitcoinDomain")
+include(":Data:BitcoinData")
 include(":Library:DesignSystem")

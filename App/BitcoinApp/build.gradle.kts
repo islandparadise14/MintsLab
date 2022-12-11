@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
 
     // dagger hilt
@@ -8,15 +8,20 @@ plugins {
 }
 
 android {
-    namespace = "com.islandparadise14.bitcoinfeature"
+    namespace = "com.islandparadise14.bitcoin"
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
+        applicationId = "com.islandparadise14.integration"
         minSdk = AppConfig.MIN_SDK
         targetSdk = AppConfig.TARGET_SDK
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -38,25 +43,20 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Library.COMPOSE_UI
     }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
-    api(project(":Presentation:Core"))
-    api(project(":Domain:BitcoinDomain"))
+    api(project(":Data:BitcoinData"))
+    api(project(path = ":Presentation:BitcoinFeature"))
 
     // dagger hilt
     implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
-
-    // test 코드 실행시 reflect 필요
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${Library.KOTLIN_REFLECT}")
-
-    // kotest
-    //testImplementation("io.kotest:kotest-runner-junit5-jvm")
-    testImplementation("io.kotest:kotest-runner-junit5:${Library.KOTEST}")
-    testImplementation("io.kotest:kotest-assertions-core:${Library.KOTEST}")
-    // coroutine test
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Library.COROUTINE_TEST}")
 }
 
 // Allow references to generated code
