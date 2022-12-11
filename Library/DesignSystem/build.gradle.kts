@@ -31,6 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = AppConfig.KOTLIN_JVM_TARGET_VERSION
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Library.COMPOSE_UI
+    }
 }
 
 dependencies {
@@ -43,6 +49,16 @@ dependencies {
     api("androidx.compose.material:material:${Library.COMPOSE_MATERIAL}")
     api("androidx.appcompat:appcompat:${Library.ANDROID_APPCOMPAT}")
     api("com.google.android.material:material:${Library.ANDROID_MATERIAL}")
+
+    // Import the landscapist BOM (버전 통합관리)
+    implementation("com.github.skydoves:landscapist-bom:${Library.LANDSCAPIST}")
+
+    // Import landscapist libraries
+    implementation("com.github.skydoves:landscapist-coil")
+    // TODO 필요할때 추가
+    // implementation("com.github.skydoves:landscapist-placeholder")
+    // implementation("com.github.skydoves:landscapist-palette")
+    // implementation("com.github.skydoves:landscapist-transformation")
 
     androidTestApi("androidx.compose.ui:ui-test-junit4:${Library.COMPOSE_UI}")
     debugApi("androidx.compose.ui:ui-tooling:${Library.COMPOSE_UI}")

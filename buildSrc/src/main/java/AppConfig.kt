@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 object AppConfig {
     const val COMPILE_SDK = 33
-    const val MIN_SDK = 21
+    const val MIN_SDK = 23
     const val TARGET_SDK = 33
 
     const val KOTLIN_JVM_TARGET_VERSION = "11"

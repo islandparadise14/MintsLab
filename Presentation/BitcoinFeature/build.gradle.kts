@@ -32,14 +32,31 @@ android {
     kotlinOptions {
         jvmTarget = AppConfig.KOTLIN_JVM_TARGET_VERSION
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Library.COMPOSE_UI
+    }
 }
 
 dependencies {
     api(project(path = ":Presentation:Base"))
     api(project(path = ":Domain:IntegrationDomain"))
+
     // dagger hilt
     implementation("com.google.dagger:hilt-android:${Library.DAGGER_HILT}")
     kapt("com.google.dagger:hilt-android-compiler:${Library.DAGGER_HILT}")
+
+    // test 코드 실행시 reflect 필요
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${Library.KOTLIN_REFLECT}")
+
+    // kotest
+    //testImplementation("io.kotest:kotest-runner-junit5-jvm")
+    testImplementation("io.kotest:kotest-runner-junit5:${Library.KOTEST}")
+    testImplementation("io.kotest:kotest-assertions-core:${Library.KOTEST}")
+    // coroutine test
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Library.COROUTINE_TEST}")
 }
 
 // Allow references to generated code

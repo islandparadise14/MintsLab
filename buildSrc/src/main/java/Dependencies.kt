@@ -26,4 +26,13 @@ object Library {
     const val OKHTTP3 = "4.9.2"
 
     const val ROOM = "2.4.3"
+
+    const val COROUTINE = "1.6.4"
+
+    const val LANDSCAPIST = "2.1.0"
+
+    const val KOTEST = "5.5.4"
+    const val COROUTINE_TEST = "1.6.4"
+
+    const val KOTLIN_REFLECT = "1.7.22"
 }
