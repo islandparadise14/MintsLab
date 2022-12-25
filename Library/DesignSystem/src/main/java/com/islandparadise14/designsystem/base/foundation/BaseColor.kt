@@ -1,22 +1,59 @@
-package com.islandparadise14.designsystem.foundation
+package com.islandparadise14.designsystem.base.foundation
 
 import androidx.compose.ui.graphics.Color
 
-internal object BaseColor {
-    val grayScale = GrayScale(
-        white = Color(0xFF_FFFFFF),
-        gray50 = Color(0xFF_FAFAFA),
-        gray100 = Color(0xFF_F5F5F5),
-        gray200 = Color(0xFF_EEEEEE),
-        gray300 = Color(0xFF_E0E0E0),
-        gray400 = Color(0xFF_BDBDBD),
-        gray500 = Color(0xFF_9E9E9E),
-        gray600 = Color(0xFF_757575),
-        gray700 = Color(0xFF_616161),
-        gray800 = Color(0xFF_424242),
-        gray900 = Color(0xFF_212121),
-        black = Color(0xFF_000000),
-    )
+data class BaseColorPalette(
+    val _50: Color,
+    val _100: Color,
+    val _200: Color,
+    val _300: Color,
+    val _400: Color,
+    val _500: Color,
+    val _600: Color,
+    val _700: Color,
+    val _800: Color,
+    val _900: Color,
+)
+
+object BaseColor {
+     object GrayScale {
+         val white = Color(0xFF_FFFFFF)
+         val gray50 = Color(0xFF_FAFAFA)
+         val gray100 = Color(0xFF_F5F5F5)
+         val gray200 = Color(0xFF_EEEEEE)
+         val gray300 = Color(0xFF_E0E0E0)
+         val gray400 = Color(0xFF_BDBDBD)
+         val gray500 = Color(0xFF_9E9E9E)
+         val gray600 = Color(0xFF_757575)
+         val gray700 = Color(0xFF_616161)
+         val gray800 = Color(0xFF_424242)
+         val gray900 = Color(0xFF_212121)
+         val gray950 = Color(0xFF_181818)
+         val black = Color(0xFF_000000)
+    }
+
+    object Alpha {
+        val transparent = Color(0x00_000000)
+        val black10 = Color(0x1A_000000)
+        val black20 = Color(0x33_000000)
+        val black30 = Color(0x4D_000000)
+        val black40 = Color(0x66_000000)
+        val black50 = Color(0x80_000000)
+        val black60 = Color(0x99_000000)
+        val black70 = Color(0xB3_000000)
+        val black80 = Color(0xCC_000000)
+        val black90 = Color(0xE6_000000)
+        val white10 = Color(0x1A_FFFFFF)
+        val white20 = Color(0x33_FFFFFF)
+        val white30 = Color(0x4D_FFFFFF)
+        val white40 = Color(0x66_FFFFFF)
+        val white50 = Color(0x80_FFFFFF)
+        val white60 = Color(0x99_FFFFFF)
+        val white70 = Color(0xB3_FFFFFF)
+        val white80 = Color(0xCC_FFFFFF)
+        val white90 = Color(0xE6_FFFFFF)
+    }
+
     val red = BaseColorPalette(
         _50 = Color(0xFF_FFEBEE),
         _100 = Color(0xFF_FFCDD2),
@@ -222,31 +259,3 @@ internal object BaseColor {
         _900 = Color(0xFF_3E2723),
     )
 }
-
-internal data class GrayScale(
-    val white: Color,
-    val gray50: Color,
-    val gray100: Color,
-    val gray200: Color,
-    val gray300: Color,
-    val gray400: Color,
-    val gray500: Color,
-    val gray600: Color,
-    val gray700: Color,
-    val gray800: Color,
-    val gray900: Color,
-    val black: Color,
-)
-
-internal data class BaseColorPalette(
-    val _50: Color,
-    val _100: Color,
-    val _200: Color,
-    val _300: Color,
-    val _400: Color,
-    val _500: Color,
-    val _600: Color,
-    val _700: Color,
-    val _800: Color,
-    val _900: Color,
-)

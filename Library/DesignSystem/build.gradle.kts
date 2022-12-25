@@ -30,6 +30,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = AppConfig.KOTLIN_JVM_TARGET_VERSION
+        freeCompilerArgs = listOf(*kotlinOptions.freeCompilerArgs.toTypedArray(), "-Xjvm-default=all")
     }
     buildFeatures {
         compose = true
