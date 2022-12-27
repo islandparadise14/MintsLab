@@ -22,8 +22,8 @@ fun getMintsLabDarkColor(primaryPalette: BaseColorPalette) = SemanticColor(prima
     brightText = GrayScale.white
     disableText = GrayScale.gray700
 
-    normalIcon = GrayScale.white
-    selectedIcon = primaryPalette._700
+    normalIcon = GrayScale.gray100
+    selectedIcon = primaryPalette._500
     pressedIcon = GrayScale.gray200
     disableIcon = GrayScale.gray700
 
@@ -69,7 +69,7 @@ data class SemanticColor(val primaryPalette: BaseColorPalette) {
         internal set
     var pressedIcon: Color = GrayScale.gray700
         internal set
-    var disableIcon: Color = GrayScale.gray300
+    var disableIcon: Color = GrayScale.gray500
         internal set
 
     var mainButton: Color = primaryPalette._600

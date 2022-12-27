@@ -9,10 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
-import com.islandparadise14.designsystem.base.atom.MLDIconButton
-import com.islandparadise14.designsystem.base.atom.MLDText
+import com.islandparadise14.designsystem.base.atom.*
+import com.islandparadise14.designsystem.base.foundation._12dp
+import com.islandparadise14.designsystem.base.foundation._16dp
+import com.islandparadise14.designsystem.base.foundation._8dp
 
 @Composable
 fun TitleBar(
@@ -28,11 +29,11 @@ fun TitleBar(
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = _8dp)
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = _16dp)
                 .weight(1f, true)
                 .align(Alignment.CenterVertically)
         ) {
@@ -50,7 +51,7 @@ fun TitleBar(
         }
         Row(
             modifier = Modifier
-                .padding(end = 12.dp)
+                .padding(end = _12dp)
                 .align(Alignment.Bottom)
         ) {
             iconography2?.let {

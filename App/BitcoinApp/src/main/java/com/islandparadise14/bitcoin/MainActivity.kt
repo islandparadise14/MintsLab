@@ -39,20 +39,34 @@ class MainActivity : ComponentActivity() {
                         iconography1 = Iconography.IconCamera,
                         iconography2 = Iconography.IconCheckCircle
                     )
-                    MLDIconButton(
-                        iconography = Iconography.IconBookmark,
-                        contentDescription = null,
-                        text = "북마크"
-                    )
-                    Space(16)
+                    Row {
+                        MLDIconButton(
+                            iconography = Iconography.IconBookmark,
+                            contentDescription = null,
+                            text = "북마크"
+                        )
+                        MLDIconButton(
+                            iconography = Iconography.IconBookmark,
+                            contentDescription = null,
+                            isActive = false,
+                            text = "북마크"
+                        )
+                        MLDIconButton(
+                            iconography = Iconography.IconBookmark,
+                            contentDescription = null,
+                            isHighLight = true,
+                            text = "북마크"
+                        )
+                    }
+                    Space(_16dp)
                     MLDText("Let's Draw with MintsLab DesignSystem", tint = color.subText)
                     MLDText("Let's Draw with MintsLab DesignSystem", tint = color.primaryText, textStyle = typography.body1)
-                    Space(16)
+                    Space(_16dp)
                     BoxButton(
                         Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp),
-                        iconography = iconState.value
+                            .padding(horizontal = _16dp),
+                        iconography = iconState.value,
                     ) {
                         if (iconState.value == null) {
                             iconState.value = Iconography.IconCheck
@@ -64,20 +78,21 @@ class MainActivity : ComponentActivity() {
                         BoxButton(
                             buttonSize = ButtonSize.Large,
                             buttonColor = ButtonColor.Sub,
+                            isRound = false,
                             modifier = Modifier
                                 .width(180.dp)
-                                .padding(all = 16.dp)
+                                .padding(all = _16dp)
                         )
                         BoxButton(
                             buttonSize = ButtonSize.Large,
                             modifier = Modifier
                                 .width(180.dp)
-                                .padding(all = 16.dp)
+                                .padding(all = _16dp)
                         )
                     }
                     BoxButton(buttonSize = ButtonSize.Medium, text = "분석")
                     BoxButton(text = "수정", buttonSize = ButtonSize.Small, buttonColor = ButtonColor.Gray)
-                    Spacer(Modifier.height(10.dp))
+                    Spacer(Modifier.height(_12dp))
 
 
                     Column(

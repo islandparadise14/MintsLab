@@ -3,11 +3,9 @@ package com.islandparadise14.designsystem.base.atom
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.BuildConfig
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.foundation.Iconography
+import com.islandparadise14.designsystem.base.foundation._12dp
+import com.islandparadise14.designsystem.base.foundation._16dp
 import com.islandparadise14.designsystem.base.foundation.iconography.IconEmpty
 import com.islandparadise14.designsystem.base.foundation.value.ButtonColor
 import com.islandparadise14.designsystem.base.foundation.value.ButtonSize
@@ -34,18 +34,26 @@ fun BoxButton(
     buttonSize: ButtonSize = ButtonSize.Xlarge,
     isDisable: Boolean = false,
     iconography: ImageVector? = null,
+    isRound: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
+    // 상수 및 remember
+    val buttonMinScaleValue = 0.95f
+    val pressState = remember { mutableStateOf(false) }
+    val isPressCanceled = remember { mutableStateOf(false) }
 
     // 공통되는 내용은 변수로 따로 관리
     val buttonScale = animateFloatAsState(
-        targetValue = if (isPressed) 0.95f else 1f,
+        targetValue = if (pressState.value) buttonMinScaleValue else 1f,
         visibilityThreshold = 0.03f
-    )
+    ) {
+        if (isPressCanceled.value) {
+            pressState.value = false
+            isPressCanceled.value = false
+        }
+    }
     val textScale = animateFloatAsState(
-        targetValue = if (isPressed) 0.98f else 1f,
+        targetValue = if (pressState.value) 0.98f else 1f,
         visibilityThreshold = 0.03f
     )
 
@@ -62,10 +70,10 @@ fun BoxButton(
         ButtonSize.Xlarge -> 52.dp
     }
     val horizontalPadding = when (buttonSize) {
-        ButtonSize.Small -> 12.dp
-        ButtonSize.Medium -> 16.dp
-        ButtonSize.Large -> 16.dp
-        ButtonSize.Xlarge -> 16.dp
+        ButtonSize.Small -> _12dp
+        ButtonSize.Medium -> _16dp
+        ButtonSize.Large -> _16dp
+        ButtonSize.Xlarge -> _16dp
     }
 
     val buttonMainColor = if (buttonType == ButtonType.Outline && isDisable)
@@ -109,11 +117,11 @@ fun BoxButton(
 
     val pressedSolidColor = calculateRetouch(
         buttonMainColor,
-        isPressed,
+        pressState.value,
         MintsLabTheme.retouch.solidPressed
     )
 
-    val pressedOutlineColor = if (isPressed)
+    val pressedOutlineColor = if (pressState.value)
         MintsLabTheme.color.pressTransparent
     else
         MintsLabTheme.color.transparent
@@ -127,16 +135,34 @@ fun BoxButton(
         ButtonType.Outline -> BorderStroke(1.dp, buttonMainColor)
     }
 
+    val onTouchDown = {
+        if (!isDisable) {
+            isPressCanceled.value = false
+            pressState.value = true
+        }
+    }
+    val onTouchUpOrCancel = {
+        if (!isDisable) {
+            if (buttonScale.value == buttonMinScaleValue) {
+                pressState.value = false
+            } else {
+                isPressCanceled.value = true
+            }
+        }
+    }
+
     /** Content */
     MLDSurface(
         onClick = onClick,
+        onTouchDown = onTouchDown,
+        onTouchUpOrCancel = onTouchUpOrCancel,
         modifier = Modifier
             .then(modifier)
             .scale(buttonScale.value),
         isDisable = isDisable,
         backgroundColor = buttonBackground,
+        isRound = isRound,
         border = border,
-        interactionSource = interactionSource,
     ) {
         Row(
             Modifier
@@ -168,9 +194,12 @@ fun BoxButton(
 @Composable
 fun PreviewBoxButtonSize() {
     Column {
-        BoxButton(buttonSize = ButtonSize.Xlarge); Spacer(modifier = Modifier.height(10.dp))
-        BoxButton(buttonSize = ButtonSize.Large); Spacer(modifier = Modifier.height(10.dp))
-        BoxButton(buttonSize = ButtonSize.Medium); Spacer(modifier = Modifier.height(10.dp))
+        BoxButton(buttonSize = ButtonSize.Xlarge)
+        Space(_12dp)
+        BoxButton(buttonSize = ButtonSize.Large)
+        Space(_12dp)
+        BoxButton(buttonSize = ButtonSize.Medium)
+        Space(_12dp)
         BoxButton(buttonSize = ButtonSize.Small)
     }
 }
@@ -192,45 +221,45 @@ fun PreviewBoxButtonContent() {
     Row(Modifier.padding(10.dp)) {
         Column {
             BoxButton()
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Sub)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Gray)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Warning)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonType = ButtonType.Outline)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Sub, buttonType = ButtonType.Outline)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Gray, buttonType = ButtonType.Outline)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Warning, buttonType = ButtonType.Outline)
         }
-        Spacer(modifier = Modifier.width(10.dp))
+        Space(_12dp)
         Column {
             BoxButton(isDisable = true)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Sub, isDisable = true)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Gray, isDisable = true)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonColor = ButtonColor.Warning, isDisable = true)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(buttonType = ButtonType.Outline, isDisable = true)
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(
                 buttonColor = ButtonColor.Sub,
                 buttonType = ButtonType.Outline,
                 isDisable = true
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(
                 buttonColor = ButtonColor.Gray,
                 buttonType = ButtonType.Outline,
                 isDisable = true
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Space(_12dp)
             BoxButton(
                 buttonColor = ButtonColor.Warning,
                 buttonType = ButtonType.Outline,
