@@ -114,7 +114,7 @@ data class SemanticColor(private val primaryPalette: BaseColorPalette) {
 
     var mainButton: Color = primaryPalette._600
         internal set
-    var subButton: Color = primaryPalette._100
+    var subButton: Color = primaryPalette._200
         internal set
     var grayButton: Color = GrayScale.gray300
         internal set
