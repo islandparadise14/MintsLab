@@ -14,7 +14,6 @@ import com.islandparadise14.designsystem.base.foundation.*
 
 val brandColor = BaseColor.amber
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MintsLabTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),

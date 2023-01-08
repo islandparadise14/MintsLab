@@ -12,7 +12,7 @@ android {
     compileSdk = AppConfig.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.islandparadise14.integration"
+        applicationId = "com.islandparadise14.bitcoin"
         minSdk = AppConfig.MIN_SDK
         targetSdk = AppConfig.TARGET_SDK
         versionCode = 1
@@ -36,6 +36,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = AppConfig.KOTLIN_JVM_TARGET_VERSION
+        freeCompilerArgs = listOf(*kotlinOptions.freeCompilerArgs.toTypedArray(), "-Xjvm-default=all")
     }
     buildFeatures {
         compose = true

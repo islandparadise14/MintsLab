@@ -14,78 +14,108 @@ import com.islandparadise14.designsystem.R
 
 @Composable
 fun getMintsLabTypography() = MintsLabTypography(
-    headline1 = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.spToDp(),
-        lineHeight = 30.spToDp()
-    ),
-    headline2 = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.spToDp(),
-        lineHeight = 28.spToDp()
-    ),
-    headline3 = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.spToDp(),
-        lineHeight = 26.spToDp()
-    ),
-    headline4 = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 18.spToDp(),
-        lineHeight = 24.spToDp()
-    ),
-    body1 = TextStyle(
+    headlineBold1 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 16.spToDp(),
-        lineHeight = 24.spToDp()
+        fontSize = TypoSize.headLine1.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine1.lineHeight.spToDp()
     ),
-    body2 = TextStyle(
+    headlineNormal1 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.spToDp(),
-        lineHeight = 24.spToDp()
+        fontSize = TypoSize.headLine1.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine1.lineHeight.spToDp()
     ),
-    body3 = TextStyle(
+    headlineBold2 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 14.spToDp(),
-        lineHeight = 20.spToDp()
+        fontSize = TypoSize.headLine2.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine2.lineHeight.spToDp()
     ),
-    body4 = TextStyle(
+    headlineNormal2 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.spToDp(),
-        lineHeight = 20.spToDp()
+        fontSize = TypoSize.headLine2.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine2.lineHeight.spToDp()
     ),
-    detail1 = TextStyle(
+    headlineBold3 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 12.spToDp(),
-        lineHeight = 18.spToDp()
+        fontSize = TypoSize.headLine3.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine3.lineHeight.spToDp()
     ),
-    detail2 = TextStyle(
+    headlineNormal3 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.spToDp(),
-        lineHeight = 18.spToDp()
+        fontSize = TypoSize.headLine3.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine3.lineHeight.spToDp()
     ),
-    detail3 = TextStyle(
+    headlineBold4 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 10.spToDp(),
-        lineHeight = 14.spToDp()
+        fontSize = TypoSize.headLine4.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine4.lineHeight.spToDp()
     ),
-    detail4 = TextStyle(
+    headlineNormal4 = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 10.spToDp(),
-        lineHeight = 14.spToDp()
-    )
+        fontSize = TypoSize.headLine4.fontSize.spToDp(),
+        lineHeight = TypoSize.headLine4.lineHeight.spToDp()
+    ),
+    bodyBold1 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.body1.fontSize.spToDp(),
+        lineHeight = TypoSize.body1.lineHeight.spToDp()
+    ),
+    bodyMedium1 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Medium,
+        fontSize = TypoSize.body1.fontSize.spToDp(),
+        lineHeight = TypoSize.body1.lineHeight.spToDp()
+    ),
+    bodyNormal1 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.body1.fontSize.spToDp(),
+        lineHeight = TypoSize.body1.lineHeight.spToDp()
+    ),
+    bodyBold2 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.body2.fontSize.spToDp(),
+        lineHeight = TypoSize.body2.lineHeight.spToDp()
+    ),
+    bodyNormal2 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.body2.fontSize.spToDp(),
+        lineHeight = TypoSize.body2.lineHeight.spToDp()
+    ),
+    detailBold1 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.detail1.fontSize.spToDp(),
+        lineHeight = TypoSize.detail1.lineHeight.spToDp()
+    ),
+    detailNormal1 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.detail1.fontSize.spToDp(),
+        lineHeight = TypoSize.detail1.lineHeight.spToDp()
+    ),
+    detailBold2 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.detail2.fontSize.spToDp(),
+        lineHeight = TypoSize.detail2.lineHeight.spToDp()
+    ),
+    detailNormal2 = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.detail2.fontSize.spToDp(),
+        lineHeight = TypoSize.detail2.lineHeight.spToDp()
+    ),
 )
 
 internal val LocalMintsLabTypography = staticCompositionLocalOf {
@@ -94,82 +124,129 @@ internal val LocalMintsLabTypography = staticCompositionLocalOf {
 
 @Immutable
 data class MintsLabTypography(
-    val headline1 : TextStyle = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
-        lineHeight = 30.sp
-    ),
-    val headline2 : TextStyle = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp
-    ),
-    val headline3 : TextStyle = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 26.sp
-    ),
-    val headline4 : TextStyle = TextStyle(
-        fontFamily = spoqaHanSansNeoFont,
-        fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
-        lineHeight = 24.sp
-    ),
-    val body1 : TextStyle = TextStyle(
+    val headlineBold1 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 16.sp,
-        lineHeight = 24.sp
+        fontSize = TypoSize.headLine1.fontSize.sp,
+        lineHeight = TypoSize.headLine1.lineHeight.sp
     ),
-    val body2 : TextStyle = TextStyle(
+    val headlineNormal1 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp
+        fontSize = TypoSize.headLine1.fontSize.sp,
+        lineHeight = TypoSize.headLine1.lineHeight.sp
     ),
-    val body3 : TextStyle = TextStyle(
+    val headlineBold2 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        lineHeight = 20.sp
+        fontSize = TypoSize.headLine2.fontSize.sp,
+        lineHeight = TypoSize.headLine2.lineHeight.sp
     ),
-    val body4 : TextStyle = TextStyle(
+    val headlineNormal2 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp
+        fontSize = TypoSize.headLine2.fontSize.sp,
+        lineHeight = TypoSize.headLine2.lineHeight.sp
     ),
-    val detail1 : TextStyle = TextStyle(
+    val headlineBold3 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 12.sp,
-        lineHeight = 18.sp
+        fontSize = TypoSize.headLine3.fontSize.sp,
+        lineHeight = TypoSize.headLine3.lineHeight.sp
     ),
-    val detail2 : TextStyle = TextStyle(
+    val headlineNormal3 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 18.sp
+        fontSize = TypoSize.headLine3.fontSize.sp,
+        lineHeight = TypoSize.headLine3.lineHeight.sp
     ),
-    val detail3 : TextStyle = TextStyle(
+    val headlineBold4 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Bold,
-        fontSize = 10.sp,
-        lineHeight = 14.sp
+        fontSize = TypoSize.headLine4.fontSize.sp,
+        lineHeight = TypoSize.headLine4.lineHeight.sp
     ),
-    val detail4 : TextStyle = TextStyle(
+    val headlineNormal4 : TextStyle = TextStyle(
         fontFamily = spoqaHanSansNeoFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
-        lineHeight = 14.sp
+        fontSize = TypoSize.headLine4.fontSize.sp,
+        lineHeight = TypoSize.headLine4.lineHeight.sp
     ),
+    val bodyBold1 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.body1.fontSize.sp,
+        lineHeight = TypoSize.body1.lineHeight.sp
+    ),
+    val bodyMedium1 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Medium,
+        fontSize = TypoSize.body1.fontSize.sp,
+        lineHeight = TypoSize.body1.lineHeight.sp
+    ),
+    val bodyNormal1 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.body1.fontSize.sp,
+        lineHeight = TypoSize.body1.lineHeight.sp
+    ),
+    val bodyBold2 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.body2.fontSize.sp,
+        lineHeight = TypoSize.body2.lineHeight.sp
+    ),
+    val bodyNormal2 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.body2.fontSize.sp,
+        lineHeight = TypoSize.body2.lineHeight.sp
+    ),
+    val detailBold1 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.detail1.fontSize.sp,
+        lineHeight = TypoSize.detail1.lineHeight.sp
+    ),
+    val detailNormal1 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.detail1.fontSize.sp,
+        lineHeight = TypoSize.detail1.lineHeight.sp
+    ),
+    val detailBold2 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = TypoSize.detail2.fontSize.sp,
+        lineHeight = TypoSize.detail2.lineHeight.sp
+    ),
+    val detailNormal2 : TextStyle = TextStyle(
+        fontFamily = spoqaHanSansNeoFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = TypoSize.detail2.fontSize.sp,
+        lineHeight = TypoSize.detail2.lineHeight.sp
+    ),
+)
+
+object TypoSize {
+    val headLine1: TypoValue = TypoValue(24, 30)
+    val headLine2: TypoValue = TypoValue(22, 28)
+    val headLine3: TypoValue = TypoValue(20, 26)
+    val headLine4: TypoValue = TypoValue(18, 24)
+    val body1: TypoValue = TypoValue(16, 24)
+    val body2: TypoValue = TypoValue(14, 20)
+    val detail1: TypoValue = TypoValue(12, 18)
+    val detail2: TypoValue = TypoValue(10, 14)
+}
+
+data class TypoValue(
+    val fontSize: Int,
+    val lineHeight: Int
 )
 
 val spoqaHanSansNeoFont = FontFamily(
     Font(R.font.spoqa_han_sans_neo_regular, FontWeight.Normal),
+    Font(R.font.spoqa_han_sans_neo_medium, FontWeight.Medium),
     Font(R.font.spoqa_han_sans_neo_bold, FontWeight.Bold)
 )
 

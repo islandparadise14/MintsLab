@@ -17,13 +17,13 @@ fun calculateRetouch(color: Color, isRetouch: Boolean, retouchValue: RetouchValu
 
     return when (retouchValue.retouchType) {
         RetouchType.Saturate -> {
-            val rhUtil = RgbHsvUtil(composeToGraphicsColor(color))
+            val rhUtil = RgbHsvUtil(composeColorToGraphicsColor(color))
             val convertColor = rhUtil.changeSaturate(retouchValue.value)
 
             Color(convertColor)
         }
         RetouchType.Value -> {
-            val rhUtil = RgbHsvUtil(composeToGraphicsColor(color))
+            val rhUtil = RgbHsvUtil(composeColorToGraphicsColor(color))
             val convertColor = rhUtil.changeValue(retouchValue.value)
 
             Color(convertColor)
@@ -31,7 +31,7 @@ fun calculateRetouch(color: Color, isRetouch: Boolean, retouchValue: RetouchValu
     }
 }
 
-fun composeToGraphicsColor(color: Color): Int {
+fun composeColorToGraphicsColor(color: Color): Int {
     return android.graphics.Color.argb(
         color.toArgb().alpha,
         color.toArgb().red,
