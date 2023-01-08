@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
-import com.islandparadise14.designsystem.base.foundation.Iconography
-import com.islandparadise14.designsystem.base.foundation.iconography.IconCamera
+import com.islandparadise14.designsystem.base.foundation.MLDIcon
+import com.islandparadise14.designsystem.base.foundation.mldicon.IconCamera
 import com.islandparadise14.designsystem.base.foundation.value.IconSize
 
 @Composable
@@ -40,5 +40,5 @@ fun MLDIcon(
 @Preview
 @Composable
 fun PreviewMLDIcon() {
-    MLDIcon(iconography = Iconography.IconCamera, contentDescription = null)
+    MLDIcon(iconography = MLDIcon.IconCamera, contentDescription = null)
 }

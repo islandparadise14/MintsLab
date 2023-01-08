@@ -13,10 +13,10 @@ import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.MintsLabTheme.color
 import com.islandparadise14.designsystem.base.atom.*
-import com.islandparadise14.designsystem.base.foundation.Iconography
+import com.islandparadise14.designsystem.base.foundation.MLDIcon
 import com.islandparadise14.designsystem.base.foundation._12dp
 import com.islandparadise14.designsystem.base.foundation._16dp
-import com.islandparadise14.designsystem.base.foundation.iconography.*
+import com.islandparadise14.designsystem.base.foundation.mldicon.*
 import com.islandparadise14.designsystem.base.foundation.value.ButtonColor
 import com.islandparadise14.designsystem.base.foundation.value.ButtonSize
 import com.islandparadise14.designsystem.base.undercarriage.IconButtonListener
@@ -32,7 +32,7 @@ import com.islandparadise14.designsystem.component.section.TextSection
 import com.islandparadise14.designsystem.component.textField.TextInputArea
 
 class MainActivity : ComponentActivity() {
-    private val iconState = mutableStateOf<ImageVector?>(Iconography.IconCall)
+    private val iconState = mutableStateOf<ImageVector?>(MLDIcon.IconCall)
     private val textFieldValue = mutableStateOf("")
     private val selectedIndex = mutableStateOf(0)
 
@@ -49,12 +49,12 @@ class MainActivity : ComponentActivity() {
                             title = "Hello World",
                             subTitle = "welcome to MintsLab",
                             icon1 = object: IconButtonListener {
-                                override val iconography: ImageVector = Iconography.IconCamera
+                                override val iconography: ImageVector = MLDIcon.IconCamera
                                 override val contentDescription: String = ""
                                 override val onClickIcon: () -> Unit = {}
                             },
                             icon2 = object: IconButtonListener {
-                                override val iconography: ImageVector = Iconography.IconCheckCircle
+                                override val iconography: ImageVector = MLDIcon.IconCheckCircle
                                 override val contentDescription: String = ""
                                 override val onClickIcon: () -> Unit = {}
                             },
@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                         Row {
                             MLDIconButton(
                                 object: IconButtonListener {
-                                    override val iconography: ImageVector = Iconography.IconBookmark
+                                    override val iconography: ImageVector = MLDIcon.IconBookmark
                                     override val contentDescription: String = ""
                                     override val onClickIcon: () -> Unit = {}
                                 },
@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
                             )
                             MLDIconButton(
                                 object: IconButtonListener {
-                                    override val iconography: ImageVector = Iconography.IconCall
+                                    override val iconography: ImageVector = MLDIcon.IconCall
                                     override val contentDescription: String = ""
                                     override val onClickIcon: () -> Unit = {}
                                 },
@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
                             )
                             MLDIconButton(
                                 object: IconButtonListener {
-                                    override val iconography: ImageVector = Iconography.IconBookmark
+                                    override val iconography: ImageVector = MLDIcon.IconBookmark
                                     override val contentDescription: String = ""
                                     override val onClickIcon: () -> Unit = {}
                                 },
@@ -97,14 +97,14 @@ class MainActivity : ComponentActivity() {
                         TextList("송금하기", true)
                         TextList("뭐라도 써보자", true)
                         TextList("매용구리~", true)
-                        IconTextList(icon = Iconography.IconPlus, text = "추가하기", iconTint = color.itemGreen)
-                        IconTextList(icon = Iconography.IconStar, text = "별표하기", iconTint = color.itemYellow)
-                        IconTextList(icon = Iconography.IconHeart, text = "하트하기", iconTint = color.itemRed)
+                        IconTextList(icon = MLDIcon.IconPlus, text = "추가하기", iconTint = color.itemGreen)
+                        IconTextList(icon = MLDIcon.IconStar, text = "별표하기", iconTint = color.itemYellow)
+                        IconTextList(icon = MLDIcon.IconHeart, text = "하트하기", iconTint = color.itemRed)
                         MLDTextButton("편집", isBig = true)
                         MLDTextButton(
                             "이 내용이 안보이시나요?",
-                            leftIcon = Iconography.IconBookmark,
-                            rightIcon = Iconography.IconArrowRightSmall
+                            leftIcon = MLDIcon.IconBookmark,
+                            rightIcon = MLDIcon.IconArrowRightSmall
                         )
                         Spacer(_16dp)
                         TextInputArea(
@@ -122,7 +122,7 @@ class MainActivity : ComponentActivity() {
                             leftIcon = iconState.value,
                         ) {
                             if (iconState.value == null) {
-                                iconState.value = Iconography.IconCall
+                                iconState.value = MLDIcon.IconCall
                             } else {
                                 iconState.value = null
                             }

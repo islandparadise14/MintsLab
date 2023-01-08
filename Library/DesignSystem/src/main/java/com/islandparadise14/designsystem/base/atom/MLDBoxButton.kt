@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.foundation.*
-import com.islandparadise14.designsystem.base.foundation.iconography.IconEmpty
+import com.islandparadise14.designsystem.base.foundation.mldicon.IconEmpty
 import com.islandparadise14.designsystem.base.foundation.value.ButtonColor
 import com.islandparadise14.designsystem.base.foundation.value.ButtonSize
 import com.islandparadise14.designsystem.base.foundation.value.ButtonType
@@ -206,7 +206,7 @@ fun MLDBoxButton(
         ) {
             AnimatedVisibility(visible = leftIcon != null) {
                 MLDIcon(
-                    iconography = leftIcon ?: Iconography.IconEmpty,
+                    iconography = leftIcon ?: MLDIcon.IconEmpty,
                     contentDescription = null,
                     modifier = Modifier
                         .padding(end = _4dp)
@@ -225,7 +225,7 @@ fun MLDBoxButton(
             )
             AnimatedVisibility(visible = rightIcon != null) {
                 MLDIcon(
-                    iconography = rightIcon ?: Iconography.IconEmpty,
+                    iconography = rightIcon ?: MLDIcon.IconEmpty,
                     contentDescription = null,
                     modifier = Modifier
                         .padding(end = _4dp)
