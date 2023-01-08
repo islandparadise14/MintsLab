@@ -1,7 +1,9 @@
 package com.islandparadise14.designsystem.component.list
 
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -14,11 +16,8 @@ import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.atom.MLDIcon
 import com.islandparadise14.designsystem.base.atom.MLDSurface
 import com.islandparadise14.designsystem.base.atom.MLDText
-import com.islandparadise14.designsystem.base.foundation.Iconography
 import com.islandparadise14.designsystem.base.foundation._12dp
-import com.islandparadise14.designsystem.base.foundation._16dp
 import com.islandparadise14.designsystem.base.foundation._20dp
-import com.islandparadise14.designsystem.base.foundation.iconography.IconArrowRightSmall
 
 @Composable
 fun IconTextList(

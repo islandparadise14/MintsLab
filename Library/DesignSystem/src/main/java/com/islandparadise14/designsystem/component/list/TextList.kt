@@ -12,11 +12,11 @@ import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.atom.MLDIcon
 import com.islandparadise14.designsystem.base.atom.MLDSurface
 import com.islandparadise14.designsystem.base.atom.MLDText
-import com.islandparadise14.designsystem.base.foundation.Iconography
+import com.islandparadise14.designsystem.base.foundation.MLDIcon
 import com.islandparadise14.designsystem.base.foundation._12dp
 import com.islandparadise14.designsystem.base.foundation._16dp
 import com.islandparadise14.designsystem.base.foundation._20dp
-import com.islandparadise14.designsystem.base.foundation.iconography.IconArrowRightSmall
+import com.islandparadise14.designsystem.base.foundation.mldicon.IconArrowRightSmall
 
 @Composable
 fun TextList(
@@ -76,7 +76,7 @@ fun TextList(
             if (showRightArrow) {
                 MLDIcon(
                     modifier = Modifier.width(_16dp).height(_16dp),
-                    iconography = Iconography.IconArrowRightSmall,
+                    iconography = MLDIcon.IconArrowRightSmall,
                     contentDescription = null,
                 )
             }

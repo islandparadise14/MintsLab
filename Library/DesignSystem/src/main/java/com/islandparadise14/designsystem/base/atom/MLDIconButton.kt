@@ -13,10 +13,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import com.islandparadise14.designsystem.MintsLabTheme
-import com.islandparadise14.designsystem.base.foundation.Iconography
 import com.islandparadise14.designsystem.base.foundation._4dp
 import com.islandparadise14.designsystem.base.foundation._8dp
-import com.islandparadise14.designsystem.base.foundation.iconography.IconCheck
+import com.islandparadise14.designsystem.base.foundation.MLDIcon
+import com.islandparadise14.designsystem.base.foundation.mldicon.IconCheck
 import com.islandparadise14.designsystem.base.foundation.value.IconSize
 import com.islandparadise14.designsystem.base.undercarriage.IconButtonListener
 
@@ -112,7 +112,7 @@ fun PreviewMLDIconButton() {
     MLDIconButton(
         iconButtonListener = object: IconButtonListener {
             override val iconography: ImageVector
-                get() = Iconography.IconCheck
+                get() = MLDIcon.IconCheck
             override val contentDescription: String
                 get() = ""
             override val onClickIcon: () -> Unit
