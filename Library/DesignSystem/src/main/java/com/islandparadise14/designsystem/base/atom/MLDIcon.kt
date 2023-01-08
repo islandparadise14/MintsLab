@@ -15,10 +15,10 @@ import com.islandparadise14.designsystem.base.foundation.value.IconSize
 
 @Composable
 fun MLDIcon(
-    modifier: Modifier = Modifier,
-    iconSize: IconSize = IconSize.Origin,
     iconography: ImageVector,
     contentDescription: String?,
+    modifier: Modifier = Modifier,
+    iconSize: IconSize = IconSize.Origin,
     tint: Color = MintsLabTheme.color.normalIcon
 ) {
     val padding = when (iconSize) {
@@ -26,6 +26,7 @@ fun MLDIcon(
         IconSize.Normal -> 8.dp
     }
 
+    /** Content */
     Icon(
         modifier = Modifier
             .then(modifier)

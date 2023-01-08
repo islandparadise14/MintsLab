@@ -1,6 +1,7 @@
 package com.islandparadise14.designsystem.base.atom
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -11,32 +12,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.foundation.Iconography
 import com.islandparadise14.designsystem.base.foundation._4dp
 import com.islandparadise14.designsystem.base.foundation._8dp
 import com.islandparadise14.designsystem.base.foundation.iconography.IconCheck
 import com.islandparadise14.designsystem.base.foundation.value.IconSize
-import com.islandparadise14.designsystem.base.undercarriage.MLDSurface
+import com.islandparadise14.designsystem.base.undercarriage.IconButtonListener
 
 @Composable
 fun MLDIconButton(
+    iconButtonListener: IconButtonListener,
     modifier: Modifier = Modifier,
-    iconography: ImageVector,
-    contentDescription: String?,
     text: String? = null,
     isActive: Boolean = true,
     isHighLight: Boolean = false,
-    onClick: () -> Unit = {},
 ) {
-    val buttonMinScaleValue = 0.95f
+    val buttonMinScaleValue = 0.9f
     val pressState = remember { mutableStateOf(false) }
     val isPressCanceled = remember { mutableStateOf(false) }
 
     val buttonScale = animateFloatAsState(
         targetValue = if (pressState.value) buttonMinScaleValue else 1f,
-        visibilityThreshold = 0.005f
+        visibilityThreshold = 0.002f
     ) {
         if (isPressCanceled.value) {
             pressState.value = false
@@ -68,8 +66,9 @@ fun MLDIconButton(
         }
     }
 
+    /** Content */
     MLDSurface(
-        onClick = onClick,
+        onClick = iconButtonListener.onClickIcon,
         onTouchDown = onTouchDown,
         onTouchUpOrCancel = onTouchUpOrCancel,
         modifier = Modifier
@@ -77,32 +76,28 @@ fun MLDIconButton(
             .scale(buttonScale.value),
         backgroundColor = background,
     ) {
-        Column {
-            val iconModifier = if (text.isNullOrEmpty()) {
-                Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(all = _8dp)
-            } else {
-                Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = _8dp, start = _8dp, end = _8dp, bottom = _4dp)
-            }
-
+        Column(
+            verticalArrangement = Arrangement.Center
+        ) {
             MLDIcon(
-                modifier = iconModifier,
-                iconography = iconography,
-                contentDescription = contentDescription,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = _8dp, start = _8dp, end = _8dp, bottom = _4dp),
+                iconography = iconButtonListener.iconography,
+                contentDescription = iconButtonListener.contentDescription,
                 iconSize = IconSize.Origin,
                 tint = tintColor,
             )
 
-            if (!text.isNullOrEmpty()) {
+            if (text.isNullOrEmpty()) {
+                Spacer(_4dp)
+            } else {
                 MLDText(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(start = _8dp, end = _8dp, bottom = _4dp),
                     text = text,
-                    textStyle = MintsLabTheme.typography.detail3,
+                    textStyle = MintsLabTheme.typography.detailBold2,
                     maxLines = 2,
                     tint = tintColor,
                 )
@@ -115,8 +110,14 @@ fun MLDIconButton(
 @Composable
 fun PreviewMLDIconButton() {
     MLDIconButton(
-        iconography = Iconography.IconCheck,
-        contentDescription = null,
+        iconButtonListener = object: IconButtonListener {
+            override val iconography: ImageVector
+                get() = Iconography.IconCheck
+            override val contentDescription: String
+                get() = ""
+            override val onClickIcon: () -> Unit
+                get() = TODO("Not yet implemented")
+        },
         text = "확인"
     )
 }

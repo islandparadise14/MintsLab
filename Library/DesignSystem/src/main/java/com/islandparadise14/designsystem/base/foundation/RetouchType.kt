@@ -10,7 +10,7 @@ fun getMintsLabDarkRetouch() = Retouch(
     subButtonDisable = RetouchValue(RetouchType.Value, -0.5f),
     grayButtonDisable = RetouchValue(RetouchType.Value, -0.1f),
 
-    solidPressed = RetouchValue(RetouchType.Value, 0.1f)
+    solidPressed = RetouchValue(RetouchType.Value, -0.1f)
 )
 
 val LocalMintsLabRetouch = staticCompositionLocalOf {

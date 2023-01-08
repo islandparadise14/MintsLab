@@ -11,36 +11,40 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.islandparadise14.designsystem.BuildConfig
 import com.islandparadise14.designsystem.MintsLabTheme
-import com.islandparadise14.designsystem.base.foundation.Iconography
-import com.islandparadise14.designsystem.base.foundation._12dp
-import com.islandparadise14.designsystem.base.foundation._16dp
+import com.islandparadise14.designsystem.base.foundation.*
 import com.islandparadise14.designsystem.base.foundation.iconography.IconEmpty
 import com.islandparadise14.designsystem.base.foundation.value.ButtonColor
 import com.islandparadise14.designsystem.base.foundation.value.ButtonSize
 import com.islandparadise14.designsystem.base.foundation.value.ButtonType
-import com.islandparadise14.designsystem.base.undercarriage.MLDSurface
 import com.islandparadise14.designsystem.base.undercarriage.calculateRetouch
 
 @Composable
-fun BoxButton(
+fun MLDBoxButton(
+    text: String,
     modifier: Modifier = Modifier,
-    text: String = if (BuildConfig.DEBUG) "Button" else "",
     buttonColor: ButtonColor = ButtonColor.Main,
     buttonType: ButtonType = ButtonType.Solid,
     buttonSize: ButtonSize = ButtonSize.Xlarge,
     isDisable: Boolean = false,
-    iconography: ImageVector? = null,
-    isRound: Boolean = true,
+    disableAnimation: Boolean = false,
+    leftIcon: ImageVector? = null,
+    rightIcon: ImageVector? = null,
+    isFull: Boolean = false,
     onClick: () -> Unit = {}
 ) {
     // 상수 및 remember
     val buttonMinScaleValue = 0.95f
     val pressState = remember { mutableStateOf(false) }
     val isPressCanceled = remember { mutableStateOf(false) }
+
+    val isActiveDisableAnimationLeft = remember { mutableStateOf(false) }
+    val isActiveDisableAnimationRight = remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
 
     // 공통되는 내용은 변수로 따로 관리
     val buttonScale = animateFloatAsState(
@@ -57,11 +61,31 @@ fun BoxButton(
         visibilityThreshold = 0.03f
     )
 
+    val disableAnimationLeftValue = animateFloatAsState(
+        targetValue = if (isActiveDisableAnimationLeft.value) 0.3f else 0f,
+        visibilityThreshold = 0.15f
+    ) {
+        if (it == 0.3f) {
+            isActiveDisableAnimationLeft.value = false
+        } else if (it == 0f) {
+            isActiveDisableAnimationRight.value = true
+        }
+    }
+
+    val disableAnimationRightValue = animateFloatAsState(
+        targetValue = if (isActiveDisableAnimationRight.value) 0.2f else 0f,
+        visibilityThreshold = 0.1f
+    ) {
+        if (it == 0.2f) {
+            isActiveDisableAnimationRight.value = false
+        }
+    }
+
     val textStyle = when (buttonSize) {
-        ButtonSize.Small -> MintsLabTheme.typography.detail2
-        ButtonSize.Medium -> MintsLabTheme.typography.body4
-        ButtonSize.Large -> MintsLabTheme.typography.body4
-        ButtonSize.Xlarge -> MintsLabTheme.typography.body2
+        ButtonSize.Small -> MintsLabTheme.typography.detailNormal1
+        ButtonSize.Medium -> MintsLabTheme.typography.bodyNormal2
+        ButtonSize.Large -> MintsLabTheme.typography.bodyNormal2
+        ButtonSize.Xlarge -> MintsLabTheme.typography.bodyNormal1
     }
     val buttonHeight = when (buttonSize) {
         ButtonSize.Small -> 32.dp
@@ -131,14 +155,19 @@ fun BoxButton(
         ButtonType.Outline -> pressedOutlineColor
     }
     val border = when (buttonType) {
-        ButtonType.Solid -> BorderStroke(1.dp, pressedSolidColor)
-        ButtonType.Outline -> BorderStroke(1.dp, buttonMainColor)
+        ButtonType.Solid -> BorderStroke(MinBorder, pressedSolidColor)
+        ButtonType.Outline -> BorderStroke(MinBorder, buttonMainColor)
     }
 
     val onTouchDown = {
         if (!isDisable) {
             isPressCanceled.value = false
             pressState.value = true
+        } else {
+            if (disableAnimation) {
+                isActiveDisableAnimationLeft.value = true
+                context.vibe(Vibration.WARNING)
+            }
         }
     }
     val onTouchUpOrCancel = {
@@ -158,10 +187,14 @@ fun BoxButton(
         onTouchUpOrCancel = onTouchUpOrCancel,
         modifier = Modifier
             .then(modifier)
-            .scale(buttonScale.value),
+            .scale(if (isFull) 1f else buttonScale.value)
+            .padding(
+                start = (disableAnimationLeftValue.value * 10).dp,
+                end = (disableAnimationRightValue.value *10).dp,
+            ),
         isDisable = isDisable,
         backgroundColor = buttonBackground,
-        isRound = isRound,
+        isRound = !isFull,
         border = border,
     ) {
         Row(
@@ -171,10 +204,14 @@ fun BoxButton(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AnimatedVisibility(visible = iconography != null) {
+            AnimatedVisibility(visible = leftIcon != null) {
                 MLDIcon(
-                    iconography = iconography ?: Iconography.IconEmpty,
+                    iconography = leftIcon ?: Iconography.IconEmpty,
                     contentDescription = null,
+                    modifier = Modifier
+                        .padding(end = _4dp)
+                        .height(18.dp)
+                        .width(18.dp),
                     tint = textColor
                 )
             }
@@ -186,6 +223,17 @@ fun BoxButton(
                     .align(Alignment.CenterVertically)
                     .scale(textScale.value)
             )
+            AnimatedVisibility(visible = rightIcon != null) {
+                MLDIcon(
+                    iconography = rightIcon ?: Iconography.IconEmpty,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(end = _4dp)
+                        .height(18.dp)
+                        .width(18.dp),
+                    tint = textColor
+                )
+            }
         }
     }
 }
@@ -194,13 +242,13 @@ fun BoxButton(
 @Composable
 fun PreviewBoxButtonSize() {
     Column {
-        BoxButton(buttonSize = ButtonSize.Xlarge)
-        Space(_12dp)
-        BoxButton(buttonSize = ButtonSize.Large)
-        Space(_12dp)
-        BoxButton(buttonSize = ButtonSize.Medium)
-        Space(_12dp)
-        BoxButton(buttonSize = ButtonSize.Small)
+        MLDBoxButton("Button", buttonSize = ButtonSize.Xlarge)
+        Spacer(_12dp)
+        MLDBoxButton("Button", buttonSize = ButtonSize.Large)
+        Spacer(_12dp)
+        MLDBoxButton("Button", buttonSize = ButtonSize.Medium)
+        Spacer(_12dp)
+        MLDBoxButton("Button", buttonSize = ButtonSize.Small)
     }
 }
 
@@ -220,47 +268,50 @@ fun PreviewDarkBoxButton() {
 fun PreviewBoxButtonContent() {
     Row(Modifier.padding(10.dp)) {
         Column {
-            BoxButton()
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Sub)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Gray)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Warning)
-            Space(_12dp)
-            BoxButton(buttonType = ButtonType.Outline)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Sub, buttonType = ButtonType.Outline)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Gray, buttonType = ButtonType.Outline)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Warning, buttonType = ButtonType.Outline)
+            MLDBoxButton("Button")
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Sub)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Gray)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Warning)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonType = ButtonType.Outline)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Sub, buttonType = ButtonType.Outline)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Gray, buttonType = ButtonType.Outline)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Warning, buttonType = ButtonType.Outline)
         }
-        Space(_12dp)
+        Spacer(_12dp)
         Column {
-            BoxButton(isDisable = true)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Sub, isDisable = true)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Gray, isDisable = true)
-            Space(_12dp)
-            BoxButton(buttonColor = ButtonColor.Warning, isDisable = true)
-            Space(_12dp)
-            BoxButton(buttonType = ButtonType.Outline, isDisable = true)
-            Space(_12dp)
-            BoxButton(
+            MLDBoxButton("Button", isDisable = true)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Sub, isDisable = true)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Gray, isDisable = true)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonColor = ButtonColor.Warning, isDisable = true)
+            Spacer(_12dp)
+            MLDBoxButton("Button", buttonType = ButtonType.Outline, isDisable = true)
+            Spacer(_12dp)
+            MLDBoxButton(
+                "Button",
                 buttonColor = ButtonColor.Sub,
                 buttonType = ButtonType.Outline,
                 isDisable = true
             )
-            Space(_12dp)
-            BoxButton(
+            Spacer(_12dp)
+            MLDBoxButton(
+                "Button",
                 buttonColor = ButtonColor.Gray,
                 buttonType = ButtonType.Outline,
                 isDisable = true
             )
-            Space(_12dp)
-            BoxButton(
+            Spacer(_12dp)
+            MLDBoxButton(
+                "Button",
                 buttonColor = ButtonColor.Warning,
                 buttonType = ButtonType.Outline,
                 isDisable = true

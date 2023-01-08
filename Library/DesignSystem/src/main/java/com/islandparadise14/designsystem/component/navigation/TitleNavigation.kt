@@ -1,4 +1,4 @@
-package com.islandparadise14.designsystem.component
+package com.islandparadise14.designsystem.component.navigation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,24 +7,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.base.atom.*
 import com.islandparadise14.designsystem.base.foundation._12dp
 import com.islandparadise14.designsystem.base.foundation._16dp
 import com.islandparadise14.designsystem.base.foundation._8dp
+import com.islandparadise14.designsystem.base.undercarriage.IconButtonListener
 
 @Composable
-fun TitleBar(
+fun TitleNavigation(
     title: String,
     subTitle: String? = null,
-    iconography1: ImageVector? = null,
-    iconography2: ImageVector? = null,
-    contentDescription1: String? = null,
-    contentDescription2: String? = null,
-    onClickIcon1: () -> Unit = {},
-    onClickIcon2: () -> Unit = {},
+    icon1: IconButtonListener? = null,
+    icon2: IconButtonListener? = null,
 ) {
     Row(
         Modifier
@@ -40,33 +36,25 @@ fun TitleBar(
             if (!subTitle.isNullOrEmpty()) {
                 MLDText(
                     text = subTitle,
-                    textStyle = MintsLabTheme.typography.body2,
+                    textStyle = MintsLabTheme.typography.bodyNormal1,
                     tint = MintsLabTheme.color.subText
                 )
             }
 
             MLDText(
                 text = title,
-                textStyle = MintsLabTheme.typography.headline1)
+                textStyle = MintsLabTheme.typography.headlineBold1)
         }
         Row(
             modifier = Modifier
                 .padding(end = _12dp)
                 .align(Alignment.Bottom)
         ) {
-            iconography2?.let {
-                MLDIconButton(
-                    iconography = it,
-                    contentDescription = contentDescription2,
-                    onClick = onClickIcon2
-                )
+            icon1?.let {
+                MLDIconButton(icon1)
             }
-            iconography1?.let {
-                MLDIconButton(
-                    iconography = it,
-                    contentDescription = contentDescription1,
-                    onClick = onClickIcon1
-                )
+            icon2?.let {
+                MLDIconButton(icon2)
             }
         }
     }
@@ -75,5 +63,5 @@ fun TitleBar(
 @Preview
 @Composable
 fun PreviewTitleBar() {
-    TitleBar(title = "Title")
+    TitleNavigation(title = "Title")
 }

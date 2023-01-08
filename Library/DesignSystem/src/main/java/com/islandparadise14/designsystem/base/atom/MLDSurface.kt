@@ -1,8 +1,7 @@
-package com.islandparadise14.designsystem.base.undercarriage
+package com.islandparadise14.designsystem.base.atom
 
 import android.view.MotionEvent
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalMinimumTouchTargetEnforcement
 import androidx.compose.material.Surface
@@ -18,6 +17,7 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.unit.dp
 import com.islandparadise14.designsystem.MintsLabTheme
 import com.islandparadise14.designsystem.NoRippleTheme
+import com.islandparadise14.designsystem.base.foundation.MLDButtonShape
 
 @Suppress("OPT_IN_IS_NOT_ENABLED")
 @OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
@@ -33,7 +33,7 @@ fun MLDSurface(
     border: BorderStroke? = null,
     content: @Composable () -> Unit
 ) {
-    val shape: Shape = if (isRound) RoundedCornerShape(10.dp) else RectangleShape
+    val shape: Shape = if (isRound) MLDButtonShape else RectangleShape
 
     CompositionLocalProvider(
         LocalRippleTheme provides NoRippleTheme, // 버튼의 리플 이펙트 제거
@@ -76,3 +76,36 @@ fun MLDSurface(
         }
     }
 }
+
+/*
+    val buttonMinScaleValue = 0.9f
+    val pressState = remember { mutableStateOf(false) }
+    val isPressCanceled = remember { mutableStateOf(false) }
+
+    val buttonScale = animateFloatAsState(
+        targetValue = if (pressState.value) buttonMinScaleValue else 1f,
+        visibilityThreshold = 0.002f
+    ) {
+        if (isPressCanceled.value) {
+            pressState.value = false
+            isPressCanceled.value = false
+        }
+    }
+
+    val background = if (pressState.value)
+        MintsLabTheme.color.pressTransparent
+    else
+        MintsLabTheme.color.transparent
+
+    val onTouchDown = {
+        isPressCanceled.value = false
+        pressState.value = true
+    }
+    val onTouchUpOrCancel = {
+        if (buttonScale.value == buttonMinScaleValue) {
+            pressState.value = false
+        } else {
+            isPressCanceled.value = true
+        }
+    }
+*/

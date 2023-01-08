@@ -1,3 +1,5 @@
+@file:Suppress("ObjectPropertyName")
+
 package com.islandparadise14.designsystem.base.foundation
 
 import androidx.compose.ui.unit.dp

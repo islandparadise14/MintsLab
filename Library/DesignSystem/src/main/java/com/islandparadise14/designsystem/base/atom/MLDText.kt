@@ -13,7 +13,7 @@ import com.islandparadise14.designsystem.MintsLabTheme
 fun MLDText(
     text: String,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = MintsLabTheme.typography.body2,
+    textStyle: TextStyle = MintsLabTheme.typography.bodyNormal1,
     tint: Color = MintsLabTheme.color.mainText,
     maxLines: Int = 1
 ) {
